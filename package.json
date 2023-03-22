@@ -1,0 +1,45 @@
+{
+    "name": "github-api-massive",
+    "version": "0.4.2",
+    "description": "github api massive changes",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ginxo/github-api-massive"
+    },
+    "keywords": [
+        "github",
+        "API",
+        "octokit",
+        "massive"
+    ],
+    "author": "Enrique Mingorance <emingora@redhat.com>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/ginxo/github-api-massive/issues"
+    },
+    "homepage": "https://github.com/ginxo/github-api-massive",
+    "scripts": {
+        "lint": "eslint '**/*.js' --ignore-pattern node_modules/",
+        "lint:fix": "eslint '**/*.js' --ignore-pattern node_modules/ --fix"
+    },
+    "bin": {
+        "locktt": "bin/index.js"
+    },
+    "engines": {
+        "node": ">=7.6.0"
+    },
+    "dependencies": {
+        "@octokit/rest": "^19.0.7",
+        "line-reader": "^0.3.0",
+        "yargs": "^17.7.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.6.0",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-plugin-header": "^3.0.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jest": "^23.0.2",
+        "uuid": "^3.3.3"
+    }
+}
