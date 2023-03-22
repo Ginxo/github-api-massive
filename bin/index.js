@@ -50,6 +50,7 @@ async function run() {
                         repo,
                         hook_id: webhook.id,
                         config: {
+                            ...webhook.config,
                             url: argv.target
                         }
                     });
