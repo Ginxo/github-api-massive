@@ -22,6 +22,8 @@ const argv = yargs(hideBin(process.argv)).argv
 const { Octokit } = require('@octokit/rest');
 const fs = require('fs');
 
+const WEBHOOK_PROPERTIES = ["url", "content_type", "secret", "insecure_ssl", "address", "room"]
+
 async function run() {
     const octokit = new Octokit({
         auth: argv.token,
@@ -44,14 +46,23 @@ async function run() {
             } else {
                 for (const webhook of filteredWebHooks) {
                     console.log(webhook.id);
-                    console.log(`Trying to update payload URL from ${webhook.config.url} to ${argv.target}`);
+
+                    const configOverride = Object.entries(argv).reduce((res, [key, value]) => {
+                        // keep argv keys that are valid webhook configs and that are not undefined
+                        if (WEBHOOK_PROPERTIES.includes(key) && value !== undefined) {
+                            res[key] = value
+                        }
+                        return res
+                    }, {})
+
+                    console.log(`Trying to update payload URL from ${webhook.config.url} to ${configOverride}`);
                     const updateWebhook = await octokit.rest.repos.updateWebhook({
                         owner,
                         repo,
                         hook_id: webhook.id,
                         config: {
                             ...webhook.config,
-                            url: argv.target
+                            ...configOverride
                         }
                     });
                     if (updateWebhook.status === 200) {

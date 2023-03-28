@@ -3,8 +3,12 @@
 just execute
 ```
 npm install
-node bin/index.js --token=YOUR_GITHUB_TOKEN --source=PAYLOAD_URL_TO_BE_CHANGED --target=NEW_PAYLOAD_URL --file=THE_FILE_PATH_CONTAINING_REPOSITORY_LIST
+node bin/index.js --token=YOUR_GITHUB_TOKEN --source=WEBHOOK_PAYLOAD_URL --file=THE_FILE_PATH_CONTAINING_REPOSITORY_LIST [--url=NEW_PAYLOAD_URL --content_type=NEW_CONTENT_TYPE --secret=NEW_SECRET --insecure_ssl=NEW_INSECURE_SSL --address=NEW_ADDRESS --room=NEW_ROOM]
 ```
+
+All those parameters in `[` and `]` are optional, this means that only those that should be changed must be provided. Note that if none of them is provided the webhook configuration won't be changed at all.
+
+> NOTE: right now the `WEBHOOK_PAYLOAD_URL` identifies the webhook that must be updated
 
 # Repository List file format
 
