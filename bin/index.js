@@ -47,13 +47,7 @@ async function run() {
                 for (const webhook of filteredWebHooks) {
                     console.log(webhook.id);
 
-                    const configOverride = Object.entries(argv).reduce((res, [key, value]) => {
-                        // keep argv keys that are valid webhook configs and that are not undefined
-                        if (WEBHOOK_PROPERTIES.includes(key) && value !== undefined) {
-                            res[key] = value
-                        }
-                        return res
-                    }, {})
+                    const configOverride = Object.fromEntries(Object.entries(argv).filter(([key, value]) => WEBHOOK_PROPERTIES.includes(key) && value !== undefined))
 
                     console.log(`Trying to update payload URL from ${webhook.config.url} to ${configOverride}`);
                     const updateWebhook = await octokit.rest.repos.updateWebhook({

@@ -8,7 +8,7 @@ node bin/index.js --token=YOUR_GITHUB_TOKEN --source=WEBHOOK_PAYLOAD_URL --file=
 
 All those parameters in `[` and `]` are optional, this means that only those that should be changed must be provided. Note that if none of them is provided the webhook configuration won't be changed at all.
 
-> NOTE: right now the `WEBHOOK_PAYLOAD_URL` identifies the webhook that must be updated
+> **NOTE**: `source` argument is used just for webhook filtering
 
 # Repository List file format
 
