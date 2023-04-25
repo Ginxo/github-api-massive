@@ -10,6 +10,8 @@ All those parameters in `[` and `]` are optional, this means that only those tha
 
 > **NOTE**: `source` argument is used just for webhook filtering
 
+> **NOTE**: `secret` argument must be provided since the information coming from the service is `******`
+
 # Repository List file format
 
 * the file should be utf-8

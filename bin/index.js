@@ -48,16 +48,17 @@ async function run() {
                     console.log(webhook.id);
 
                     const configOverride = Object.fromEntries(Object.entries(argv).filter(([key, value]) => WEBHOOK_PROPERTIES.includes(key) && value !== undefined))
+                    const finalConfig = {
+                        ...webhook.config,
+                        ...configOverride
+                    }
 
-                    console.log(`Trying to update payload URL from ${webhook.config.url} to ${configOverride}`);
+                    console.log(`Trying to update payload URL from ${webhook.config.url} to ${JSON.stringify(finalConfig)}`);
                     const updateWebhook = await octokit.rest.repos.updateWebhook({
                         owner,
                         repo,
                         hook_id: webhook.id,
-                        config: {
-                            ...webhook.config,
-                            ...configOverride
-                        }
+                        config: finalConfig
                     });
                     if (updateWebhook.status === 200) {
                         console.log('updated');
